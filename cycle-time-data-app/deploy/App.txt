@@ -3,12 +3,12 @@
 <head>
     <title>Cycle Time Data</title>
     <!--  (c) 2016 CA Technologies.  All Rights Reserved. -->
-    <!--  Build Date: Tue May 02 2017 18:35:16 GMT-0600 (MDT) -->
+    <!--  Build Date: Thu Aug 13 2020 08:52:27 GMT-0400 (EDT) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Tue May 02 2017 18:35:16 GMT-0600 (MDT)";
-        var BUILDER = "corkr03";
-        var CHECKSUM = 180178919205;
+        var APP_BUILD_DATE = "Thu Aug 13 2020 08:52:27 GMT-0400 (EDT)";
+        var BUILDER = "wds";
+        var CHECKSUM = 180169555720;
     </script>
     
     <script type="text/javascript" src="/apps/2.1/sdk.js"></script>
@@ -616,6 +616,9 @@ Ext.define('CArABU.technicalservices.CycleTimeDataStore',{
             }
             snapsByOid[oid].push(snap.getData());
         });
+        Ext.iterate(snapsByOid, function (key, value) {
+            _.sortBy(value, "_ValidFrom");
+        });
         return snapsByOid;
     },
     _updateRecords: function(resultsByOid, records){
@@ -689,13 +692,7 @@ Ext.define('CArABU.technicalservices.CycleTimeDataStore',{
                 }
             ],
             useHttpPost: this.USE_POST,
-            sorters: [{
-                property: 'ObjectID',
-                direction: 'ASC'
-            },{
-                property: '_ValidFrom',
-                direction: 'ASC'
-            }],
+            sorters: [],
             hydrate: this._getHydrateFields(),
             compress: true,
             removeUnauthorizedSnapshots: true
@@ -730,6 +727,7 @@ Ext.define('CArABU.technicalservices.CycleTimeDataStore',{
     }
 
 });
+
 Ext.define('CA.technicalservices.CycleTimePickerPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.cycletimepickerpanel',

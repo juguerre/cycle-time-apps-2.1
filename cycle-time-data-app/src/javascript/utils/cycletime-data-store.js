@@ -54,6 +54,9 @@ Ext.define('CArABU.technicalservices.CycleTimeDataStore',{
             }
             snapsByOid[oid].push(snap.getData());
         });
+        Ext.iterate(snapsByOid, function (key, value) {
+            _.sortBy(value, "_ValidFrom");
+        });
         return snapsByOid;
     },
     _updateRecords: function(resultsByOid, records){
@@ -127,13 +130,7 @@ Ext.define('CArABU.technicalservices.CycleTimeDataStore',{
                 }
             ],
             useHttpPost: this.USE_POST,
-            sorters: [{
-                property: 'ObjectID',
-                direction: 'ASC'
-            },{
-                property: '_ValidFrom',
-                direction: 'ASC'
-            }],
+            sorters: [],
             hydrate: this._getHydrateFields(),
             compress: true,
             removeUnauthorizedSnapshots: true
