@@ -89,7 +89,11 @@ Ext.define('CArABU.technicalservices.CycleTimeCalculator',{
 
         if (cycleTime) {
             cycleTime = cycleTime / CArABU.technicalservices.CycleTimeCalculator.getGranularityMultiplier(CArABU.technicalservices.CycleTimeCalculator.granularity);
-            cycleTime = cycleTime.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+            //cycleTime = cycleTime.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+            cycleTime = cycleTime.toLocaleString('es-ES', {
+                minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                });
         }
 
         return { cycleTime: cycleTime, endDate: endDate, startDate: startDate};
@@ -114,7 +118,11 @@ Ext.define('CArABU.technicalservices.CycleTimeCalculator',{
         });
         timeInState = timeInState/CArABU.technicalservices.CycleTimeCalculator.getGranularityMultiplier(CArABU.technicalservices.CycleTimeCalculator.granularity);
 
-        return timeInState.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+        //return timeInState.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+        return timeInState.toLocaleString('es-ES', {
+            minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+            maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+        });
     },
     getRenderedTimeInStateValue: function(timeInStateData, stateName, stateValue, noDataText){
 

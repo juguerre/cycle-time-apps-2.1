@@ -3,12 +3,12 @@
 <head>
     <title>Cycle Time Data</title>
     <!--  (c) 2016 CA Technologies.  All Rights Reserved. -->
-    <!--  Build Date: Thu Aug 13 2020 10:15:08 GMT-0400 (EDT) -->
+    <!--  Build Date: Wed Apr 06 2022 15:30:33 GMT+0200 (hora de verano de Europa central) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Thu Aug 13 2020 10:15:08 GMT-0400 (EDT)";
-        var BUILDER = "wds";
-        var CHECKSUM = 180187863287;
+        var APP_BUILD_DATE = "Wed Apr 06 2022 15:30:33 GMT+0200 (hora de verano de Europa central)";
+        var BUILDER = "juguerre";
+        var CHECKSUM = 182952035194;
     </script>
     
     <script type="text/javascript" src="/apps/2.1/sdk.js"></script>
@@ -294,7 +294,11 @@ Ext.define('CArABU.technicalservices.CycleTimeCalculator',{
 
         if (cycleTime) {
             cycleTime = cycleTime / CArABU.technicalservices.CycleTimeCalculator.getGranularityMultiplier(CArABU.technicalservices.CycleTimeCalculator.granularity);
-            cycleTime = cycleTime.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+            //cycleTime = cycleTime.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+            cycleTime = cycleTime.toLocaleString('es-ES', {
+                minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                });
         }
 
         return { cycleTime: cycleTime, endDate: endDate, startDate: startDate};
@@ -319,7 +323,11 @@ Ext.define('CArABU.technicalservices.CycleTimeCalculator',{
         });
         timeInState = timeInState/CArABU.technicalservices.CycleTimeCalculator.getGranularityMultiplier(CArABU.technicalservices.CycleTimeCalculator.granularity);
 
-        return timeInState.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+        //return timeInState.toFixed(CArABU.technicalservices.CycleTimeCalculator.precision);
+        return timeInState.toLocaleString('es-ES', {
+            minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+            maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+        });
     },
     getRenderedTimeInStateValue: function(timeInStateData, stateName, stateValue, noDataText){
 
@@ -406,7 +414,7 @@ Ext.define('CA.technicalservices.CycleTimePickerButton', {
     text: '',
 
     config: {
-        context: undefined,
+        context: 'es-ES',
         modelNames: undefined,
         toolTipConfig: {
             anchor: 'top',
@@ -1793,7 +1801,7 @@ Ext.define('CA.technicalservices.Utility',{
             exportLimit: 1000
         }
     },
-    exportDateFormat: 'm/d/Y h:i:s',
+    exportDateFormat: 'd/m/Y h:i:s',
     _gridConfig: {},
 
     launch: function() {
@@ -2391,7 +2399,7 @@ Ext.define('CA.technicalservices.Utility',{
         var columns = [];
 
         Ext.Array.each(this.getCurrentFetchList(), function(c){
-            if (c !== 'ObjectID'){
+            if (c !== 'ObjectID_no_filter ObjectID'){
                 if (model){
                     var field = model.getField(c),
                         tpl = Rally.ui.renderer.RendererFactory.getRenderTemplate(field),

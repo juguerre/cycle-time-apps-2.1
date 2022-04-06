@@ -11,7 +11,7 @@ Ext.define('CA.technicalservices.CycleTimePickerButton', {
     text: '',
 
     config: {
-        context: undefined,
+        context: 'es-ES',
         modelNames: undefined,
         toolTipConfig: {
             anchor: 'top',

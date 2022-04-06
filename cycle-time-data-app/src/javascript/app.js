@@ -35,7 +35,7 @@
             exportLimit: 1000
         }
     },
-    exportDateFormat: 'm/d/Y h:i:s',
+    exportDateFormat: 'd/m/Y h:i:s',
     _gridConfig: {},
 
     launch: function() {
@@ -633,7 +633,7 @@
         var columns = [];
 
         Ext.Array.each(this.getCurrentFetchList(), function(c){
-            if (c !== 'ObjectID'){
+            if (c !== 'ObjectID_no_filter ObjectID'){
                 if (model){
                     var field = model.getField(c),
                         tpl = Rally.ui.renderer.RendererFactory.getRenderTemplate(field),

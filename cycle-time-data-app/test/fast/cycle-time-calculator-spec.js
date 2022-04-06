@@ -50,7 +50,10 @@ describe("Using the Cycle Time Calculator",function() {
             expect( cycleTime.startDate ).toEqual(date2);
             expect( cycleTime.endDate ).toEqual(date6);
 
-            var diff = (Rally.util.DateTime.getDifference(date6,date2,'second')/86400).toFixed(2);
+            var diff = (Rally.util.DateTime.getDifference(date6, date2, 'second') / 86400).toLocaleString('es-ES', {
+                minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+            });
             expect( cycleTime.cycleTime).toEqual(diff);
 
         });
@@ -73,7 +76,10 @@ describe("Using the Cycle Time Calculator",function() {
             expect( cycleTime.startDate ).toEqual(date2);
             expect( cycleTime.endDate ).toEqual(date5);
 
-            var diff = (Rally.util.DateTime.getDifference(date5,date2,'second')/86400).toFixed(2);
+            var diff = (Rally.util.DateTime.getDifference(date5, date2, 'second') / 86400).toLocaleString('es-ES', {
+                minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+            });
             expect( cycleTime.cycleTime).toEqual(diff);
 
         });
@@ -95,7 +101,10 @@ describe("Using the Cycle Time Calculator",function() {
              expect( cycleTime.startDate ).toEqual(date1);
              expect( cycleTime.endDate ).toEqual(date6);
 
-             var diff = (Rally.util.DateTime.getDifference(date6,date1,'second')/86400).toFixed(2);
+             var diff = (Rally.util.DateTime.getDifference(date6, date1, 'second') / 86400).toLocaleString('es-ES', {
+                 minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                 maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+             });
              expect( cycleTime.cycleTime).toEqual(diff);
 
          });
@@ -116,7 +125,10 @@ describe("Using the Cycle Time Calculator",function() {
              expect( cycleTime.startDate ).toEqual(date1);
              expect( cycleTime.endDate ).toEqual(date6);
 
-             var diff = (Rally.util.DateTime.getDifference(date6,date1,'second')/86400).toFixed(2);
+             var diff = (Rally.util.DateTime.getDifference(date6, date1, 'second') / 86400).toLocaleString('es-ES', {
+                 minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+                 maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+             });
              expect( cycleTime.cycleTime).toEqual(diff);
          });
 
@@ -152,7 +164,10 @@ describe("Using the Cycle Time Calculator",function() {
         CArABU.technicalservices.CycleTimeCalculator.precision = 2;
         CArABU.technicalservices.CycleTimeCalculator.granularity = 'day';
 
-        var diff = ((Rally.util.DateTime.getDifference(date2,date1,'second')/86400) + (Rally.util.DateTime.getDifference(date6,date3,'second')/86400)).toFixed(2);
+        var diff = ((Rally.util.DateTime.getDifference(date2, date1, 'second') / 86400) + (Rally.util.DateTime.getDifference(date6, date3, 'second') / 86400)).toLocaleString('es-ES', {
+            minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+            maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+        });
 
         var timeInStateData = CArABU.technicalservices.CycleTimeCalculator.getTimeInStateData(snaps, "ThisState","","_ValidFrom");
         var timeInState = CArABU.technicalservices.CycleTimeCalculator.calculateTimeInState(timeInStateData);
@@ -176,7 +191,10 @@ describe("Using the Cycle Time Calculator",function() {
 
         expect( cycleTime.startDate ).toEqual(date2);
         expect( cycleTime.endDate ).toEqual(date4);
-        expect( cycleTime.cycleTime).toEqual(diff.toFixed(2));
+        expect(cycleTime.cycleTime).toEqual(diff.toLocaleString('es-ES', {
+            minimumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+            maximumFractionDigits: CArABU.technicalservices.CycleTimeCalculator.precision,
+        }));
     });
 
     //getLastEndDate: function(timeInStateData, stateName, stateValue)
